@@ -3296,27 +3296,29 @@ for lesson in LESSONS:
            # Khung hiển thị Script & Dịch song song (Dùng HTML/JS để không giật lag audio)
            # Khung hiển thị Script & Dịch song song (SỬ DỤNG CSS THUẦN - TRỊ DỨT ĐIỂM LỖI STREAMLIT)
            # Khung hiển thị Script & Dịch song song
+         # Khung hiển thị Script & Dịch song song (Nối chuỗi 1 dòng trị dứt điểm lỗi Markdown)
             with st.expander("📖 Hiển thị Script & Dịch nghĩa", expanded=False):
-                # 1. Tạo thanh Tiêu đề & Công tắc phẳng ở trên cùng (Ngang hàng nhau)
-                header_col1, header_col2 = st.columns(2)
-                with header_col1:
-                    st.caption("🇺🇸 **Tiếng Anh (Script):**")
-                with header_col2:
-                    show_vi = st.toggle("🌐 Xem Dịch Tiếng Việt", key=f"vi_{lesson['id']}")
-
-                # 2. Hai cột chứa nội dung chữ (Bắt đầu từ cùng một độ cao)
-                col1, col2 = st.columns(2)
-                with col1:
-                    st.markdown(
-                        f"<div class='script-box script-en'>{lesson['en']}</div>",
-                        unsafe_allow_html=True,
-                    )
-
-                with col2:
-                    if show_vi:
-                        st.markdown(
-                            f"<div class='script-box script-vi'>{lesson['vi']}</div>",
-                            unsafe_allow_html=True,
-                        )
+                # Xử lý xuống dòng
+                en_html = lesson['en'].replace('\n', '<br>')
+                vi_html = lesson['vi'].replace('\n', '<br>')
+                
+                # Gom toàn bộ HTML thành một chuỗi liền mạch (Không có \n hay thụt lề trong ruột)
+                html_layout = (
+                    f"<style>.chk-hide-{lesson['id']} {{ display: none; }} "
+                    f".btn-trans-{lesson['id']} {{ cursor: pointer; font-family: sans-serif; font-size: 0.9rem; font-weight: 600; color: #1d4ed8; background: #eff6ff; padding: 8px 18px; border-radius: 20px; border: 1px solid #bfdbfe; float: right; margin-bottom: 12px; user-select: none; transition: 0.2s; }} "
+                    f".btn-trans-{lesson['id']}:hover {{ background: #dbeafe; }} "
+                    f".col-vi-{lesson['id']} {{ display: none; flex: 1; min-width: 0; }} "
+                    f".chk-hide-{lesson['id']}:checked ~ .content-row-{lesson['id']} .col-vi-{lesson['id']} {{ display: block; }} "
+                    f".chk-hide-{lesson['id']}:checked + .btn-trans-{lesson['id']} {{ background: #dcfce3; color: #15803d; border-color: #bbf7d0; }}</style>"
+                    f"<input type='checkbox' id='chk_{lesson['id']}' class='chk-hide-{lesson['id']}'>"
+                    f"<label for='chk_{lesson['id']}' class='btn-trans-{lesson['id']}'>🌐 Bật / Tắt Dịch Tiếng Việt</label>"
+                    f"<div style='clear: both;'></div>"
+                    f"<div class='content-row-{lesson['id']}' style='display: flex; gap: 20px;'>"
+                    f"<div style='flex: 1; min-width: 0;'><div style='color: #64748b; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; font-family: sans-serif;'>🇺🇸 Tiếng Anh (Script):</div><div class='script-box script-en'>{en_html}</div></div>"
+                    f"<div class='col-vi-{lesson['id']}'><div style='color: #64748b; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; font-family: sans-serif;'>🇻🇳 Tiếng Việt (Dịch nghĩa):</div><div class='script-box script-vi'>{vi_html}</div></div>"
+                    f"</div>"
+                )
+                
+                st.markdown(html_layout, unsafe_allow_html=True)
 
             st.divider()
