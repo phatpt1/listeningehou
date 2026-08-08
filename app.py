@@ -3292,29 +3292,31 @@ for lesson in LESSONS:
 
             # 8. Khung hiển thị Script & Dịch song song (Đã fix hoàn toàn lỗi hiển thị dịch)
          # Khung hiển thị Script & Dịch song song
+         # Khung hiển thị Script & Dịch song song (Dùng HTML/JS để không giật lag audio)
             with st.expander("📖 Hiển thị Script & Dịch nghĩa", expanded=False):
+                html_layout = f"""
+                <div style="display: flex; justify-content: flex-end; margin-bottom: 15px;">
+                    <label style="cursor: pointer; font-family: sans-serif; font-size: 0.9rem; color: #1d4ed8; font-weight: 600; display: flex; align-items: center; gap: 8px; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe; user-select: none;">
+                        <input type="checkbox" style="cursor: pointer; transform: scale(1.2);" 
+                               onchange="document.getElementById('trans_{lesson['id']}').style.display = this.checked ? 'block' : 'none'"> 
+                        🌐 Xem Dịch Tiếng Việt
+                    </label>
+                </div>
                 
-                # 1. Tách hẳn công tắc lên một hàng riêng và đẩy nó sang góc phải
-                col_space, col_toggle = st.columns([3, 1])
-                with col_toggle:
-                    show_vi = st.toggle("🌐 Xem Dịch Tiếng Việt", key=f"vi_{lesson['id']}")
+                <div style="display: flex; gap: 20px;">
+                    <!-- Cột Tiếng Anh -->
+                    <div style="flex: 1; min-width: 0;">
+                        <div style="color: #64748b; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; font-family: sans-serif;">🇺🇸 Tiếng Anh (Script):</div>
+                        <div class="script-box script-en">{lesson['en']}</div>
+                    </div>
+                    
+                    <!-- Cột Tiếng Việt -->
+                    <div style="flex: 1; min-width: 0;">
+                        <div style="color: #64748b; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; font-family: sans-serif;">🇻🇳 Tiếng Việt (Dịch nghĩa):</div>
+                        <div id="trans_{lesson['id']}" class="script-box script-vi" style="display: none;">{lesson['vi']}</div>
+                    </div>
+                </div>
+                """
+                st.markdown(html_layout, unsafe_allow_html=True)
 
-                # 2. Chia 2 cột nội dung nằm bên dưới công tắc (Đảm bảo ngang hàng 100%)
-                col1, col2 = st.columns(2)
-
-                with col1:
-                    st.caption("🇺🇸 **Tiếng Anh (Script):**")
-                    st.markdown(
-                        f"<div class='script-box script-en'>{lesson['en']}</div>",
-                        unsafe_allow_html=True,
-                    )
-
-                with col2:
-                    st.caption("🇻🇳 **Tiếng Việt (Dịch nghĩa):**")
-                    if show_vi:
-                        st.markdown(
-                            f"<div class='script-box script-vi'>{lesson['vi']}</div>",
-                            unsafe_allow_html=True,
-                        )
-            
             st.divider()
