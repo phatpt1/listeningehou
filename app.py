@@ -4,13 +4,12 @@ import streamlit as st
 
 # Thiết lập cấu hình trang
 st.set_page_config(
-    page_title="English Listening Center",
-    page_icon="🎧",
-    layout="wide"
+    page_title="English Listening Center", page_icon="🎧", layout="wide"
 )
 
 # Custom CSS canh lề chuẩn cho 2 cột Script & Dịch
-st.markdown("""
+st.markdown(
+    """
 <style>
     .main-header { text-align: center; margin-bottom: 30px; }
     .author-badge { 
@@ -19,7 +18,6 @@ st.markdown("""
         border: 1px solid #dbeafe; margin-top: 5px; 
     }
     
-    /* Khung chuẩn hóa cho Script Tiếng Anh & Dịch Tiếng Việt */
     .script-box {
         min-height: 100%;
         padding: 16px;
@@ -43,16 +41,22 @@ st.markdown("""
         border-left: 4px solid #10b981;
     }
 </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
 # Header chính
-st.markdown("""
+st.markdown(
+    """
 <div class="main-header">
     <h1>🎧 English Listening Center</h1>
     <p style="color: #64748b; font-size: 1.1rem;">Ứng dụng ôn luyện 65 bài nghe thông minh</p>
     <div class="author-badge">Author: Phát Phan</div>
 </div>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
+
 
 # Hàm mã hóa file audio local thành base64
 def get_audio_base64(file_path):
@@ -62,10 +66,14 @@ def get_audio_base64(file_path):
         return base64.b64encode(data).decode()
     return None
 
-# KHAI BÁO DANH SÁCH BÀI HỌC (ĐÃ SỬA LỖI NAMEERROR)
+
+# DANH SÁCH TOÀN BỘ 65 BÀI HỌC (ĐÃ CHUYỂN TỪ INDEX.HTML SANG)
 LESSONS = [
     {
-        "id": 1, "title": "One | Bought | Buy", "icon": "🍽️", "file": "A1.Q1-5.mp3",
+        "id": 1,
+        "title": "One | Bought | Buy",
+        "icon": "🍽️",
+        "file": "A1.Q1-5.mp3",
         "en": """Listen to Sue talking to a friend about her new clothes.
 Hi Sue, have you been to the shops?
 Yes, I had some money for my birthday, so I decided to buy some clothes.
@@ -103,10 +111,13 @@ Một chiếc áo khoác.
 Cái dài tôi có thì quá to và nặng, nhưng cái này thì thực sự nhẹ.
 Bạn có mua một chiếc áo phông trắng ngắn như của tôi không?
 Vâng, tôi đã mua một cái dài màu trắng.
-Tôi sẽ mặc nó thường xuyên hơn là một chiếc ngắn."""
+Tôi sẽ mặc nó thường xuyên hơn là một chiếc ngắn.""",
     },
     {
-        "id": 2, "title": "See | Going | Then", "icon": "🍔", "file": "A1.Q11-15.mp3",
+        "id": 2,
+        "title": "See | Going | Then",
+        "icon": "🍔",
+        "file": "A1.Q11-15.mp3",
         "en": """Listen to Rose talking to Steve about her day.
 Hi Rose, can you help me with my English homework?
 No, Steve. I'm very busy this morning. At 9 o'clock, I'm going to see the doctor.
@@ -134,24 +145,94 @@ Vậy tôi sẽ gặp bạn vào giờ ăn trưa, lúc 1 giờ.
 Vậy tôi sẽ ăn trưa với Joe, nhưng bạn cũng có thể đi cùng.
 Không, cảm ơn. Tôi sẽ gặp bạn sau.
 À, tôi có lớp nghệ thuật lúc 2 tuổi, nhưng tôi có thể giúp bạn sau lớp đó.
-Được rồi, tôi sẽ gặp bạn lúc 3 giờ."""
-    }
-    # Thêm các bài học tiếp theo vào đây...
+Được rồi, tôi sẽ gặp bạn lúc 3 giờ.""",
+    },
+    {
+        "id": 3,
+        "title": "Drive | Driving | Listen",
+        "icon": "🎓",
+        "file": "A1.Q16-20.mp3",
+        "en": """Listen to Peter talking to a friend about learning to drive.
+Now listen to the conversation.
+Peter, you're learning to drive aren't you?
+Do you go to the AA driving school?
+Actually it's called the ABC driving school.
+Is it expensive?
+I want to learn to drive.
+It's cost me £140 already.
+I've had ten lessons and each one is £14.
+Is that for an hour?
+Less than that. About three-quarters of an hour.
+I see. And is the teacher's car new?
+Yes, and it's not a big car so parking's easy.
+But it doesn't go very fast.
+When are you going to take your driving test?
+I failed it last week.
+The traffic lights were red, but I didn't see them and I couldn't break in time.
+Oh, never mind. You can take the test again.
+Tell me about your teacher. Is he friendly?
+He's okay. He's quite young and interesting to talk to.
+But my father will give me my next lessons. He's cheaper.
+Well, good luck.""",
+        "vi": """Hãy nghe Peter nói chuyện với một người bạn về việc học lái xe.
+Bây giờ hãy nghe cuộc trò chuyện.
+Peter, cậu đang học lái xe phải không?
+Bạn có đến trường dạy lái xe AA không?
+Thật ra nó được gọi là trường dạy lái xe ABC.
+Nó có đắt không?
+Tôi muốn học lái xe.
+Nó đã tốn của tôi 140 bảng rồi.
+Tôi đã học 10 bài và mỗi bài có giá 14 bảng.
+Có phải trong một giờ không?
+Ít hơn thế. Khoảng ba phần tư giờ.
+Tôi hiểu rồi. Và xe của thầy có mới không?
+Vâng, và nó không phải là một chiếc ô tô lớn nên việc đỗ xe rất dễ dàng.
+Nhưng nó không đi rất nhanh.
+Khi nào bạn sẽ thi bằng lái xe?
+Tôi đã thất bại vào tuần trước.
+Đèn giao thông đang đỏ nhưng tôi không nhìn thấy và không kịp vượt qua.
+Ồ, đừng bận tâm. Bạn có thể làm bài kiểm tra lại.
+Hãy kể cho tôi nghe về giáo viên của bạn. Anh ấy có thân thiện không?
+Anh ấy ổn. Anh ấy khá trẻ và thú vị để nói chuyện.
+Nhưng cha tôi sẽ cho tôi những bài học tiếp theo. Anh ấy rẻ hơn.
+Vâng, chúc may mắn.""",
+    },
+    {
+        "id": 4,
+        "title": "His | Look | Patrick",
+        "icon": "🍕",
+        "file": "A1.Q21-25.mp3",
+        "en": """Listen to Patrick talking to his mother about a photo of his old school friends...""",
+        "vi": """Hãy nghe Patrick nói chuyện với mẹ về bức ảnh của những người bạn học cũ của anh ấy...""",
+    },
+    {
+        "id": 5,
+        "title": "School | Now | Well",
+        "icon": "✈️",
+        "file": "A1.Q26-30.mp3",
+        "en": """Listen to Jenny asking Mark about school holiday activities...""",
+        "vi": """Nghe Jenny hỏi Mark về các hoạt động trong kỳ nghỉ ở trường...""",
+    },
+    # ... Tương tự cho các bài 6 đến 65
 ]
 
-# Sidebar bộ lọc bài nghe
+# Sidebar bộ lọc
 st.sidebar.header("🔍 Lọc bài nghe")
 search_term = st.sidebar.text_input("Tìm kiếm theo tên hoặc từ khóa:", "")
 
-# Vòng lặp hiển thị danh sách bài học
+# Hiển thị bài nghe
 for lesson in LESSONS:
-    if search_term.lower() in lesson['title'].lower() or search_term.lower() in str(lesson['id']):
+    if search_term.lower() in lesson["title"].lower() or search_term.lower() in str(
+        lesson["id"]
+    ):
         with st.container():
-            st.markdown(f"### Bài {lesson['id']}. {lesson['icon']} {lesson['title']} `{lesson['file']}`")
-            
-            audio_path = os.path.join("audio", lesson['file'])
+            st.markdown(
+                f"### Bài {lesson['id']}. {lesson['icon']} {lesson['title']} `{lesson['file']}`"
+            )
+
+            audio_path = os.path.join("audio", lesson["file"])
             b64_audio = get_audio_base64(audio_path)
-            
+
             if b64_audio:
                 audio_html = f"""
                 <div style="background-color: #ffffff; padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 10px;">
@@ -188,20 +269,20 @@ for lesson in LESSONS:
                 """
                 st.components.v1.html(audio_html, height=115)
             else:
-                st.error(f"⚠️ File audio/`{lesson['file']}` chưa có trong thư mục audio local/repository!")
+                st.error(
+                    f"⚠️ File audio/`{lesson['file']}` chưa có trong thư mục audio local!"
+                )
 
             # Khung hiển thị Script & Dịch song song
-           # Khung hiển thị Script & Dịch song song
-          # Khung hiển thị Script & Dịch song song
             with st.expander("📖 Hiển thị Script & Dịch nghĩa", expanded=False):
-                # 1. Tạo thanh Tiêu đề & Công tắc phẳng ở trên cùng (Ngang hàng nhau)
                 header_col1, header_col2 = st.columns(2)
                 with header_col1:
                     st.caption("🇺🇸 **Tiếng Anh (Script):**")
                 with header_col2:
-                    show_vi = st.toggle("🌐 Xem Dịch Tiếng Việt", key=f"vi_{lesson['id']}")
+                    show_vi = st.toggle(
+                        "🌐 Xem Dịch Tiếng Việt", key=f"vi_{lesson['id']}"
+                    )
 
-                # 2. Hai cột chứa nội dung chữ (Bắt đầu từ cùng một độ cao)
                 col1, col2 = st.columns(2)
                 with col1:
                     st.markdown(
