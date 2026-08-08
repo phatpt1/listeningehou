@@ -1,5 +1,6 @@
 import os
 import streamlit as st
+import base64
 
 # Thiết lập cấu hình trang
 st.set_page_config(
@@ -8,7 +9,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom CSS cho giao diện đàng hoàng, sạch đẹp giống bản Web
+# Custom CSS cho giao diện
 st.markdown("""
 <style>
     .main-header { text-align: center; margin-bottom: 30px; }
@@ -17,7 +18,7 @@ st.markdown("""
         font-weight: 700; padding: 6px 16px; border-radius: 9999px; 
         border: 1px solid #dbeafe; margin-top: 5px; 
     }
-    .script-vi { color: #047857; font-style: italic; background-color: #f0fdf4; padding: 15px; border-radius: 8px; border-left: 4px solid #10b981; }
+    .script-vi { color: #047857; font-style: italic; background-color: #f0fdf4; padding: 15px; border-radius: 8px; border-left: 4px solid #10b981; white-space: pre-wrap; }
     .script-en { color: #1e293b; background-color: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid #3b82f6; white-space: pre-wrap; }
 </style>
 """, unsafe_allow_html=True)
@@ -31,7 +32,15 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Danh sách dữ liệu 65 bài nghe từ HTML của bạn
+# Hàm mã hóa file audio local thành base64 để truyền vào HTML
+def get_audio_base64(file_path):
+    if os.path.exists(file_path):
+        with open(file_path, "rb") as f:
+            data = f.read()
+        return base64.b64encode(data).decode()
+    return None
+
+# Danh sách dữ liệu 65 bài nghe
 LESSONS = [
     {
         "id": 1, "title": "One | Bought | Buy", "icon": "🍽️", "file": "A1.Q1-5.mp3",
@@ -104,92 +113,72 @@ Vậy tôi sẽ ăn trưa với Joe, nhưng bạn cũng có thể đi cùng.
 Không, cảm ơn. Tôi sẽ gặp bạn sau.
 À, tôi có lớp nghệ thuật lúc 2 tuổi, nhưng tôi có thể giúp bạn sau lớp đó.
 Được rồi, tôi sẽ gặp bạn lúc 3 giờ."""
-    },
-    {
-        "id": 3, "title": "Drive | Driving | Listen", "icon": "🎓", "file": "A1.Q16-20.mp3",
-        "en": """Listen to Peter talking to a friend about learning to drive.
-Now listen to the conversation.
-Peter, you're learning to drive aren't you?
-Do you go to the AA driving school?
-Actually it's called the ABC driving school.
-Is it expensive?
-I want to learn to drive.
-It's cost me £140 already.
-I've had ten lessons and each one is £14.
-Is that for an hour?
-Less than that. About three-quarters of an hour.
-I see. And is the teacher's car new?
-Yes, and it's not a big car so parking's easy.
-But it doesn't go very fast.
-When are you going to take your driving test?
-I failed it last week.
-The traffic lights were red, but I didn't see them and I couldn't break in time.
-Oh, never mind. You can take the test again.
-Tell me about your teacher. Is he friendly?
-He's okay. He's quite young and interesting to talk to.
-But my father will give me my next lessons. He's cheaper.
-Well, good luck.""",
-        "vi": """Hãy nghe Peter nói chuyện với một người bạn về việc học lái xe.
-Bây giờ hãy nghe cuộc trò chuyện.
-Peter, cậu đang học lái xe phải không?
-Bạn có đến trường dạy lái xe AA không?
-Thật ra nó được gọi là trường dạy lái xe ABC.
-Nó có đắt không?
-Tôi muốn học lái xe.
-Nó đã tốn của tôi 140 bảng rồi.
-Tôi đã học 10 bài và mỗi bài có giá 14 bảng.
-Có phải trong một giờ không?
-Ít hơn thế. Khoảng ba phần tư giờ.
-Tôi hiểu rồi. Và xe của thầy có mới không?
-Vâng, và nó không phải là một chiếc ô tô lớn nên việc đỗ xe rất dễ dàng.
-Nhưng nó không đi rất nhanh.
-Khi nào bạn sẽ thi bằng lái xe?
-Tôi đã thất bại vào tuần trước.
-Đèn giao thông đang đỏ nhưng tôi không nhìn thấy và không kịp vượt qua.
-Ồ, đừng bận tâm. Bạn có thể làm bài kiểm tra lại.
-Hãy kể cho tôi nghe về giáo viên của bạn. Anh ấy có thân thiện không?
-Anh ấy ổn. Anh ấy khá trẻ và thú vị để nói chuyện.
-Nhưng cha tôi sẽ cho tôi những bài học tiếp theo. Anh ấy rẻ hơn.
-Vâng, chúc may mắn."""
     }
-    # Tương tự thêm tiếp các bài còn lại vào đây...
+    # Cứ giữ nguyên các bài tiếp theo...
 ]
 
-# Bộ lọc bài học
+# Sidebar bộ lọc
 st.sidebar.header("🔍 Lọc bài nghe")
 search_term = st.sidebar.text_input("Tìm kiếm theo tên hoặc từ khóa:", "")
 
-# Hiển thị danh sách bài học
+# Hiển thị bài nghe
 for lesson in LESSONS:
     if search_term.lower() in lesson['title'].lower() or search_term.lower() in str(lesson['id']):
         with st.container():
             st.markdown(f"### Bài {lesson['id']}. {lesson['icon']} {lesson['title']} `{lesson['file']}`")
             
-            # 1. Phát Audio
             audio_path = os.path.join("audio", lesson['file'])
-            if os.path.exists(audio_path):
-                st.audio(audio_path, format="audio/mp3")
+            b64_audio = get_audio_base64(audio_path)
+            
+            if b64_audio:
+                # Nhúng HTML Player có tùy chỉnh tốc độ 0.75x -> 2.0x và Auto Repeat
+                audio_html = f"""
+                <div style="background-color: #f8fafc; padding: 15px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 10px;">
+                    <audio id="audio_{lesson['id']}" controls style="width: 100%;">
+                        <source src="data:audio/mp3;base64,{b64_audio}" type="audio/mp3">
+                    </audio>
+                    
+                    <div style="display: flex; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap;">
+                        <span style="font-weight: 600; font-size: 0.9rem; color: #475569;">Tốc độ:</span>
+                        <button onclick="setSpeed({lesson['id']}, 0.75)" style="padding: 4px 10px; border-radius: 6px; border: 1px solid #cbd5e1; background: #fff; cursor: pointer;">0.75x</button>
+                        <button onclick="setSpeed({lesson['id']}, 0.8)" style="padding: 4px 10px; border-radius: 6px; border: 1px solid #cbd5e1; background: #fff; cursor: pointer;">0.8x</button>
+                        <button onclick="setSpeed({lesson['id']}, 0.9)" style="padding: 4px 10px; border-radius: 6px; border: 1px solid #cbd5e1; background: #fff; cursor: pointer;">0.9x</button>
+                        <button onclick="setSpeed({lesson['id']}, 1.0)" style="padding: 4px 10px; border-radius: 6px; border: 1px solid #cbd5e1; background: #2563eb; color: white; cursor: pointer;">1.0x</button>
+                        <button onclick="setSpeed({lesson['id']}, 1.2)" style="padding: 4px 10px; border-radius: 6px; border: 1px solid #cbd5e1; background: #fff; cursor: pointer;">1.2x</button>
+                        <button onclick="setSpeed({lesson['id']}, 1.5)" style="padding: 4px 10px; border-radius: 6px; border: 1px solid #cbd5e1; background: #fff; cursor: pointer;">1.5x</button>
+                        <button onclick="setSpeed({lesson['id']}, 2.0)" style="padding: 4px 10px; border-radius: 6px; border: 1px solid #cbd5e1; background: #fff; cursor: pointer;">2.0x</button>
+                        
+                        <label style="margin-left: auto; display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 0.9rem; color: #1e293b; cursor: pointer;">
+                            <input type="checkbox" onchange="toggleRepeat({lesson['id']}, this.checked)"> 🔁 Auto Repeat (Lặp bài)
+                        </label>
+                    </div>
+                </div>
+
+                <script>
+                    function setSpeed(id, speed) {{
+                        var audio = document.getElementById('audio_' + id);
+                        if (audio) {{
+                            audio.playbackRate = speed;
+                        }}
+                    }}
+                    function toggleRepeat(id, isChecked) {{
+                        var audio = document.getElementById('audio_' + id);
+                        if (audio) {{
+                            audio.loop = isChecked;
+                        }}
+                    }}
+                </script>
+                """
+                st.components.v1.html(audio_html, height=125)
             else:
                 st.error(f"⚠️ File audio/`{lesson['file']}` chưa có trong thư mục audio local!")
-                
-            # 2. Điều chỉnh tốc độ phát
-            speed = st.radio(
-                f"Tốc độ phát bài {lesson['id']}:",
-                options=[0.75, 0.8, 0.9, 1.0],
-                index=3,
-                horizontal=True,
-                key=f"speed_{lesson['id']}"
-            )
-            # Lưu ý: Trình duyệt web tự điều chỉnh playbackRate của st.audio() dựa trên lựa chọn
 
-            # 3. Hiển thị Script & Bản dịch
+            # Hiển thị Script & Bản dịch
             with st.expander("📖 Hiển thị Script & Dịch nghĩa"):
                 col1, col2 = st.columns(2)
-                
                 with col1:
                     st.markdown("**🇺🇸 Tiếng Anh:**")
                     st.markdown(f"<div class='script-en'>{lesson['en']}</div>", unsafe_allow_html=True)
-                
                 with col2:
                     st.markdown("**🇻🇳 Dịch Tiếng Việt:**")
                     show_vi = st.checkbox("🌐 Xem Dịch", key=f"vi_{lesson['id']}")
