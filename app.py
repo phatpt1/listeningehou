@@ -2,12 +2,12 @@ import base64
 import os
 import streamlit as st
 
-# Thiết lập cấu hình trang
+# 1. Thiết lập cấu hình trang
 st.set_page_config(
     page_title="English Listening Center", page_icon="🎧", layout="wide"
 )
 
-# Custom CSS canh lề chuẩn cho 2 cột Script & Dịch
+# 2. Custom CSS canh lề chuẩn cho 2 cột Script & Dịch
 st.markdown(
     """
 <style>
@@ -45,7 +45,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Header chính
+# 3. Header chính
 st.markdown(
     """
 <div class="main-header">
@@ -58,7 +58,7 @@ st.markdown(
 )
 
 
-# Hàm mã hóa file audio local thành base64
+# 4. Hàm mã hóa file audio local thành base64
 def get_audio_base64(file_path):
     if os.path.exists(file_path):
         with open(file_path, "rb") as f:
@@ -67,10 +67,13 @@ def get_audio_base64(file_path):
     return None
 
 
-# DANH SÁCH TOÀN BỘ 65 BÀI HỌC (ĐÃ CHUYỂN TỪ INDEX.HTML SANG)
+# 5. DANH SÁCH TOÀN BỘ 65 BÀI HỌC
 LESSONS = [
     {
-        "id": 1, "title": "One | Bought | Buy", "icon": "🍽️", "file": "A1.Q1-5.mp3",
+        "id": 1,
+        "title": "One | Bought | Buy",
+        "icon": "🍽️",
+        "file": "A1.Q1-5.mp3",
         "en": """Listen to Sue talking to a friend about her new clothes.
 Hi Sue, have you been to the shops?
 Yes, I had some money for my birthday, so I decided to buy some clothes.
@@ -108,10 +111,13 @@ Một chiếc áo khoác.
 Cái dài tôi có thì quá to và nặng, nhưng cái này thì thực sự nhẹ.
 Bạn có mua một chiếc áo phông trắng ngắn như của tôi không?
 Vâng, tôi đã mua một cái dài màu trắng.
-Tôi sẽ mặc nó thường xuyên hơn là một chiếc ngắn."""
+Tôi sẽ mặc nó thường xuyên hơn là một chiếc ngắn.""",
     },
     {
-        "id": 2, "title": "See | Going | Then", "icon": "🍔", "file": "A1.Q11-15.mp3",
+        "id": 2,
+        "title": "See | Going | Then",
+        "icon": "🍔",
+        "file": "A1.Q11-15.mp3",
         "en": """Listen to Rose talking to Steve about her day.
 Hi Rose, can you help me with my English homework?
 No, Steve. I'm very busy this morning. At 9 o'clock, I'm going to see the doctor.
@@ -139,10 +145,13 @@ Vậy tôi sẽ gặp bạn vào giờ ăn trưa, lúc 1 giờ.
 Vậy tôi sẽ ăn trưa với Joe, nhưng bạn cũng có thể đi cùng.
 Không, cảm ơn. Tôi sẽ gặp bạn sau.
 À, tôi có lớp nghệ thuật lúc 2 tuổi, nhưng tôi có thể giúp bạn sau lớp đó.
-Được rồi, tôi sẽ gặp bạn lúc 3 giờ."""
+Được rồi, tôi sẽ gặp bạn lúc 3 giờ.""",
     },
     {
-        "id": 3, "title": "Drive | Driving | Listen", "icon": "🎓", "file": "A1.Q16-20.mp3",
+        "id": 3,
+        "title": "Drive | Driving | Listen",
+        "icon": "🎓",
+        "file": "A1.Q16-20.mp3",
         "en": """Listen to Peter talking to a friend about learning to drive.
 Now listen to the conversation.
 Peter, you're learning to drive aren't you?
@@ -186,10 +195,13 @@ Tôi đã thất bại vào tuần trước.
 Hãy kể cho tôi nghe về giáo viên của bạn. Anh ấy có thân thiện không?
 Anh ấy ổn. Anh ấy khá trẻ và thú vị để nói chuyện.
 Nhưng cha tôi sẽ cho tôi những bài học tiếp theo. Anh ấy rẻ hơn.
-Vâng, chúc may mắn."""
+Vâng, chúc may mắn.""",
     },
     {
-        "id": 4, "title": "His | Look | Patrick", "icon": "🍕", "file": "A1.Q21-25.mp3",
+        "id": 4,
+        "title": "His | Look | Patrick",
+        "icon": "🍕",
+        "file": "A1.Q21-25.mp3",
         "en": """Listen to Patrick talking to his mother about a photo of his old school friends.
 How is the party with your old school friends, Patrick?
 Great, mother. We've changed a lot since 1990. Look at this photo.
@@ -221,10 +233,13 @@ Chiếc váy đen đó trông không đẹp lắm với cô ấy.
 Hmm, cô ấy bị ốm. Người đàn ông đội chiếc mũ lớn đó là một người chồng, James.
 Ồ. Đó không phải là Robert sao?
 Không. Bạn có thấy người đàn ông mặc áo phông đỏ quần xanh không? Đó là Robert.
-Con người thay đổi thế nào."""
+Con người thay đổi thế nào.""",
     },
     {
-        "id": 5, "title": "School | Now | Well", "icon": "✈️", "file": "A1.Q26-30.mp3",
+        "id": 5,
+        "title": "School | Now | Well",
+        "icon": "✈️",
+        "file": "A1.Q26-30.mp3",
         "en": """Listen to Jenny asking Mark about school holiday activities.
 Now, listen to the conversation.
 Hello, Jenny. What are you doing here?
@@ -262,10 +277,13 @@ Và thư viện của bạn có tổ chức khóa đọc sách vào dịp nghỉ
 Ồ, giống như một cuốn sách?
 À, năm nay là một cây bút, nhưng đôi khi lại là một cuốn sách hoặc một cặp sách.
 Gặp tôi sau buổi biểu diễn và tôi sẽ cho bạn biết phải làm gì.
-Cảm ơn. Hẹn gặp lại sau nhé."""
+Cảm ơn. Hẹn gặp lại sau nhé.""",
     },
     {
-        "id": 6, "title": "Concert | London | Some", "icon": "🛫", "file": "A1.Q31-35.mp3",
+        "id": 6,
+        "title": "Concert | London | Some",
+        "icon": "🛫",
+        "file": "A1.Q31-35.mp3",
         "en": """You will hear some information about a pop concert.
 You are listening to Radio South.
 Here is some information about a pop concert.
@@ -301,10 +319,13 @@ Cách tốt nhất để đến đó là đi tàu.
 Phòng hòa nhạc nằm ở phố Trinity.
 Đó là đường T-R-I-N-I-T-Y.
 Hẹn gặp bạn ở đó.
-Dành cho những người yêu thích âm nhạc cổ điển?"""
+Dành cho những người yêu thích âm nhạc cổ điển?""",
     },
     {
-        "id": 7, "title": "Health | Centre | Tomorrow", "icon": "🛒", "file": "A1.Q36-40.mp3",
+        "id": 7,
+        "title": "Health | Centre | Tomorrow",
+        "icon": "🛒",
+        "file": "A1.Q36-40.mp3",
         "en": """You will hear some information about a health centre.
 This is the Mill House Health Centre.
 The health centre is closed until 8 o'clock tomorrow morning,
@@ -340,10 +361,13 @@ Nếu bạn cần gặp bác sĩ bây giờ,
 hãy đến khoa tai nạn của Bệnh viện Đại học.
 Họ mở cửa 24 giờ một ngày khi có tai nạn và trường hợp khẩn cấp.
 Cảm ơn bạn đã gọi đến Trung tâm Y tế Mill House tối nay.
-Các bác sĩ và y tá của chúng tôi sẽ sẵn lòng trả lời thêm bất kỳ câu hỏi nào của bạn vào ngày mai."""
+Các bác sĩ và y tá của chúng tôi sẽ sẵn lòng trả lời thêm bất kỳ câu hỏi nào của bạn vào ngày mai.""",
     },
     {
-        "id": 8, "title": "Sarah | Here | Hotel", "icon": "🍜", "file": "A1.Q41-45.mp3",
+        "id": 8,
+        "title": "Sarah | Here | Hotel",
+        "icon": "🍜",
+        "file": "A1.Q41-45.mp3",
         "en": """Listen to Sarah, talking to a friend about her holiday photographs.
 I've got some photos of my holiday in Spain here.
 Did you go with your family, Sarah?
@@ -387,10 +411,13 @@ Bố bạn đang làm gì với chiếc máy ghi âm trong bức ảnh này?
 Ồ, anh ấy yêu lịch sử.
 Anh ấy đang ở trong viện bảo tàng để nghe thông tin.
 Đó là ngày yêu thích của anh ấy, vì chúng tôi cũng đã đến thăm một lâu đài vào buổi sáng.
-Đó là những bức ảnh tuyệt vời, Sarah."""
+Đó là những bức ảnh tuyệt vời, Sarah.""",
     },
     {
-        "id": 9, "title": "Don | Then | Listen", "icon": "☕", "file": "A1.Q46-50.mp3",
+        "id": 9,
+        "title": "Don | Then | Listen",
+        "icon": "☕",
+        "file": "A1.Q46-50.mp3",
         "en": """Listen to Sue talking to her friend Jim about the new sports centre.
 Now listen to the conversation.
 Have you been to the new sports centre, Jim?
@@ -426,10 +453,13 @@ Tôi thường ăn một ít trái cây.
 Tôi rất muốn đi cùng bạn vào tuần tới. Thế còn thứ Tư thì sao?
 À, tôi làm việc đến tận khuya thứ Tư. Thứ Bảy tôi rảnh, nhưng lúc đó bận quá.
 Sẽ phải là thứ Năm.
-Được rồi. Hẹn gặp lại sau."""
+Được rồi. Hẹn gặp lại sau.""",
     },
     {
-        "id": 10, "title": "Centre | Get | Shopping", "icon": "🛬", "file": "A1.Q56-60.mp3",
+        "id": 10,
+        "title": "Centre | Get | Shopping",
+        "icon": "🛬",
+        "file": "A1.Q56-60.mp3",
         "en": """Listen to Anne, asking her friend about going to a shopping centre.
 Now listen to the conversation.
 Anne, have you been to that new shopping centre?
@@ -473,10 +503,13 @@ Phố Broad thực sự rất gần nhà tôi.
 Nó có rời đi sớm không?
 9 giờ 20.
 Và bạn đến trung tâm mua sắm 40 phút sau lúc 10 giờ.
-Tuyệt vời!"""
+Tuyệt vời!""",
     },
     {
-        "id": 11, "title": "One | Card | Jan", "icon": "🚁", "file": "A1.Q6-10.mp3",
+        "id": 11,
+        "title": "One | Card | Jan",
+        "icon": "🚁",
+        "file": "A1.Q6-10.mp3",
         "en": """Listen to Jan talking to Steve about getting a student travel card.
 Hi Steve.
 Hi Jan.
@@ -528,10 +561,13 @@ Bạn chỉ cần một lá thư từ trường đại học của bạn.
 Tôi sẽ xin giáo viên của tôi một cái.
 Sau đó bạn sẽ được các đại lý du lịch mang mọi thứ đến văn phòng du lịch.
 Tuyệt vời.
-Lần tới khi bạn tới London, tôi cũng sẽ đi."""
+Lần tới khi bạn tới London, tôi cũng sẽ đi.""",
     },
     {
-        "id": 12, "title": "Too | Sarah | Sports", "icon": "🍎", "file": "A1.Q71-75.mp3",
+        "id": 12,
+        "title": "Too | Sarah | Sports",
+        "icon": "🍎",
+        "file": "A1.Q71-75.mp3",
         "en": """Listen to Sarah talking to a friend about a sports centre.
 I like your new t-shirt, Sarah.
 The colours are nice, but the problem is it's too big.
@@ -571,10 +607,13 @@ Bạn có thể học quần vợt ở đó không?
 Tôi đã gọi điện về các bài học nhưng chúng đắt quá.
 Tôi sẽ dạy bạn quần vợt, nhưng không phải hôm nay.
 Trời nóng quá.
-Chúng ta hãy đi bơi lạnh trên sông."""
+Chúng ta hãy đi bơi lạnh trên sông.""",
     },
     {
-        "id": 13, "title": "Course | College | Pounds", "icon": "🍩", "file": "A1.Q76-80.mp3",
+        "id": 13,
+        "title": "Course | College | Pounds",
+        "icon": "🍩",
+        "file": "A1.Q76-80.mp3",
         "en": """Listen to Philip, talking to a friend about his photography course.
 Now listen to the conversation.
 Hello Philip, are you doing a photography course?
@@ -616,10 +655,13 @@ Nhưng sau đó chúng tôi chụp ảnh cây cối và việc đó không khó 
 Tiếp theo chúng ta sẽ chụp ảnh trẻ em.
 Và sau khóa học?
 Không có nhiều việc làm cho nhiếp ảnh gia. Nó sẽ là sở thích của tôi.
-Tôi có thể sử dụng máy ảnh của bố tôi nhưng tôi sẽ phải mua rất nhiều phim."""
+Tôi có thể sử dụng máy ảnh của bố tôi nhưng tôi sẽ phải mua rất nhiều phim.""",
     },
     {
-        "id": 14, "title": "Restaurant | Lena | Our", "icon": "🍣", "file": "A1.Q81-85.mp3",
+        "id": 14,
+        "title": "Restaurant | Lena | Our",
+        "icon": "🍣",
+        "file": "A1.Q81-85.mp3",
         "en": """Listen to Lena talking to a friend about some restaurants.
 We've got to choose a restaurant for our class party next Saturday, Lena.
 What about the Rose Garden?
@@ -659,10 +701,13 @@ Chúng ta sẽ muốn nói chuyện, nên điều đó không tốt chút nào.
 Tôi cho là ở đó có khách sạn Colton.
 Ngay cả một bữa ăn nhẹ ở đó cũng tốn rất nhiều tiền.
 Chúng ta cần một nhà hàng rẻ hơn.
-Chúng ta hãy nhìn vào tờ báo."""
+Chúng ta hãy nhìn vào tờ báo.""",
     },
     {
-        "id": 15, "title": "Nick | Band | Helen", "icon": "🍦", "file": "A1.Q86-90.mp3",
+        "id": 15,
+        "title": "Nick | Band | Helen",
+        "icon": "🍦",
+        "file": "A1.Q86-90.mp3",
         "en": """Listen to Helen talking to her friend Sam about being in a rock band.
 Now listen to the conversation.
 Sam, you know I sing in Nick's band.
@@ -702,10 +747,13 @@ Mẹ của Nick làm bánh sandwich và tôi luôn mang theo đĩa CD.
 Chúng tôi muốn chơi ở Starlight Club nhưng hiện tại họ đã kín chỗ.
 Cô có được trả tiền khi hát không, Helen? Tất nhiên rồi.
 Ban nhạc nhận được 110 bảng một đêm và mỗi người chúng tôi có 25 bảng.
-Nick giữ lại £10 cho những thứ như quảng cáo. Tuyệt vời."""
+Nick giữ lại £10 cho những thứ như quảng cáo. Tuyệt vời.""",
     },
     {
-        "id": 16, "title": "Her | She | Did", "icon": "🥂", "file": "A1.Q91-95.mp3",
+        "id": 16,
+        "title": "Her | She | Did",
+        "icon": "🥂",
+        "file": "A1.Q91-95.mp3",
         "en": """Listen to Amy, telling her father about her shopping trip.
 Did you spend all your money, Amy?
 No, Dad, but we all bought something.
@@ -751,10 +799,13 @@ Hình ảnh ban nhạc yêu thích của chúng tôi biểu diễn trong buổi 
 Đó có phải là ban nhạc bạn đã xem cùng với Joe không?
 Vâng, hôm nay cô ấy đã nhận được CD mới của họ.
 Các tạp chí âm nhạc đều nói nó rất xuất sắc.
-Chắc hẳn các bạn đều mệt mỏi rồi."""
+Chắc hẳn các bạn đều mệt mỏi rồi.""",
     },
     {
-        "id": 17, "title": "Flat | Listen | Jamie", "icon": "🏨", "file": "A1.Q96-100.mp3",
+        "id": 17,
+        "title": "Flat | Listen | Jamie",
+        "icon": "🏨",
+        "file": "A1.Q96-100.mp3",
         "en": """Listen to Jamie talking to his mother about a flat.
 Now listen to the conversation.
 Hi mom, I've decided to move from my room at the university and into a flat with some friends.
@@ -796,10 +847,13 @@ Bởi vì không có ai ở đó cả.
 Tất nhiên rồi. Khi nào bạn sẽ di chuyển?
 Vào thứ bảy.
 Nếu con có thể đợi đến ngày hôm sau, bố và mẹ sẽ giúp con sẵn sàng cho lớp học vào thứ Hai.
-Được rồi. Cảm ơn mẹ."""
+Được rồi. Cảm ơn mẹ.""",
     },
     {
-        "id": 18, "title": "Tonight | Going | Birthday", "icon": "🚀", "file": "Bo tro 1 PART 1.mp3",
+        "id": 18,
+        "title": "Tonight | Going | Birthday",
+        "icon": "🚀",
+        "file": "Bo tro 1 PART 1.mp3",
         "en": """Now look at the instructions for part 1.
 1. Where will the man and woman meet?
 I'll see you outside the cinema at 6 o'clock.
@@ -917,10 +971,13 @@ Nhìn kìa, anh trai tôi đằng kia đang nói chuyện với bạn bè anh �
 Anh trai tôi có mái tóc vàng.
 Ồ vâng, và anh ấy cũng đeo kính giống bạn.
 Anh ấy trông rất đẹp.
-Đây là phần cuối của phần một."""
+Đây là phần cuối của phần một.""",
     },
     {
-        "id": 19, "title": "Her | She | Did", "icon": "🛍️", "file": "Bo tro 1 PART 2.mp3",
+        "id": 19,
+        "title": "Her | She | Did",
+        "icon": "🛍️",
+        "file": "Bo tro 1 PART 2.mp3",
         "en": """Now look at part 2.
 Listen to Amy telling her father about her shopping trip.
 What did she and her friends buy?
@@ -1018,10 +1075,13 @@ Hình ảnh ban nhạc yêu thích của chúng tôi biểu diễn tại một b
 Vâng, hôm nay cô ấy đã nhận được CD mới của họ.
 Các tạp chí âm nhạc đều nói nó rất xuất sắc.
 Chắc hẳn các bạn đều mệt mỏi rồi.
-Đây là phần cuối của phần hai."""
+Đây là phần cuối của phần hai.""",
     },
     {
-        "id": 20, "title": "Them | Like | Take", "icon": "🛌", "file": "Bo tro 1 PART 3.mp3",
+        "id": 20,
+        "title": "Them | Like | Take",
+        "icon": "🛌",
+        "file": "Bo tro 1 PART 3.mp3",
         "en": """Now, look at part 3.
 Listen to Jim talking to Sarah about things to take on holiday.
 For questions 11 to 15, tick A, B or C.
@@ -1163,10 +1223,13 @@ Chà, sẽ có một cái trong khách sạn của bạn nếu bạn muốn gọ
 Nhưng hãy lấy của bạn.
 Bởi vì sau đó bạn có thể gọi cho ai đó nếu bạn bị lạc trên núi.
 Cảm ơn, Jim.
-Đây là phần cuối của phần ba."""
+Đây là phần cuối của phần ba.""",
     },
     {
-        "id": 21, "title": "Part | Book | Homework", "icon": "💼", "file": "Bo tro 1 PART 4.mp3",
+        "id": 21,
+        "title": "Part | Book | Homework",
+        "icon": "💼",
+        "file": "Bo tro 1 PART 4.mp3",
         "en": """Now look at part four.
 You will hear Sally asking a friend about some homework.
 Listen and complete question 16 to 20.
@@ -1284,10 +1347,13 @@ Chúng ta có đến thứ Sáu để làm điều đó.
 Ồ tốt.
 Tôi sẽ đến thư viện vào thứ năm.
 Cảm ơn Richard. Hẹn gặp lại vào ngày mai.
-Đây là phần cuối của Phần 4."""
+Đây là phần cuối của Phần 4.""",
     },
     {
-        "id": 22, "title": "Her | Now | Again", "icon": "🛸", "file": "Bo tro 2 PART 1.mp3",
+        "id": 22,
+        "title": "Her | Now | Again",
+        "icon": "🛸",
+        "file": "Bo tro 2 PART 1.mp3",
         "en": """Now look at the instructions for part 1.
 You will hear five short conversations.
 You will hear each conversation twice.
@@ -1483,10 +1549,13 @@ Còn bố của bạn thì sao?
 Anh ấy là một nhiếp ảnh gia.
 Ồ, tôi muốn làm điều đó.
 Nếu tôi không trở thành phi công.
-Đây là phần cuối của phần một."""
+Đây là phần cuối của phần một.""",
     },
     {
-        "id": 23, "title": "She | Lot | Did", "icon": "📚", "file": "Bo tro 2 PART 2.mp3",
+        "id": 23,
+        "title": "She | Lot | Did",
+        "icon": "📚",
+        "file": "Bo tro 2 PART 2.mp3",
         "en": """Now look at part 2.
 Listen to Sarah and Matthew talking about the people they met at a party.
 What do they say about each person?
@@ -1582,10 +1651,13 @@ Sally, cô ấy đã đi du lịch khắp thế giới và biết rất nhiều 
 Mọi điều cô ấy nói đều thú vị.
 Đó là một bữa tiệc tốt.
 Đây là phần cuối của phần hai.
-Sự kết thúc của phần hai."""
+Sự kết thúc của phần hai.""",
     },
     {
-        "id": 24, "title": "Course | College | Now", "icon": "💳", "file": "Bo tro 2 PART 3.mp3",
+        "id": 24,
+        "title": "Course | College | Now",
+        "icon": "💳",
+        "file": "Bo tro 2 PART 3.mp3",
         "en": """Now look at part 3.
 Listen to Philip talking to a friend about his photography course.
 For questions 11 to 15, tick A, B or C.
@@ -1695,10 +1767,13 @@ Tiếp theo chúng ta sẽ chụp ảnh trẻ em.
 Và sau khóa học?
 Không có nhiều việc làm cho nhiếp ảnh gia. Nó sẽ là sở thích của tôi.
 Tôi có thể sử dụng máy ảnh của bố tôi nhưng tôi sẽ phải mua rất nhiều phim.
-Đây là phần cuối của phần ba."""
+Đây là phần cuối của phần ba.""",
     },
     {
-        "id": 25, "title": "Class | Now | Friend", "icon": "👗", "file": "Bo tro 2 PART 4.mp3",
+        "id": 25,
+        "title": "Class | Now | Friend",
+        "icon": "👗",
+        "file": "Bo tro 2 PART 4.mp3",
         "en": """Now look at part four.
 You will hear a man asking for information about the Westwood English school.
 Listen and complete questions 16 to 20.
@@ -1808,10 +1883,13 @@ Chúng tôi đang ở gần hiệu sách.
 Phải. Cảm ơn.
 Tạm biệt.
 Đây là phần cuối của phần bốn.
-Cảm ơn."""
+Cảm ơn.""",
     },
     {
-        "id": 26, "title": "One | Take | Time", "icon": "💺", "file": "Bo tro 3 PART 1.mp3",
+        "id": 26,
+        "title": "One | Take | Time",
+        "icon": "💺",
+        "file": "Bo tro 3 PART 1.mp3",
         "en": """Now look at the instructions for part 1.
 You will hear five short conversations.
 You will hear each conversation twice.
@@ -1965,10 +2043,13 @@ Thật sự? Tôi sẽ đến đó vào ngày mai.
 Đó là cách tốt nhất.
 Có một chuyến tàu nhanh nhưng nó quá đắt đối với tôi.
 Đây là phần cuối của phần một.
-Cảm ơn."""
+Cảm ơn.""",
     },
     {
-        "id": 27, "title": "Too | Sports | Centre", "icon": "🛎️", "file": "Bo tro 3 PART 2.mp3",
+        "id": 27,
+        "title": "Too | Sports | Centre",
+        "icon": "🛎️",
+        "file": "Bo tro 3 PART 2.mp3",
         "en": """Now look at part 2.
 Listen to Sarah talking to a friend about a sports centre.
 What is the problem with the different things at the sports centre?
@@ -2050,10 +2131,13 @@ Bạn có thể học quần vợt ở đó không?
 Tôi đã gọi điện về các bài học nhưng chúng đắt quá.
 Tôi sẽ dạy bạn quần vợt nhưng không phải hôm nay. Trời nóng quá.
 Chúng ta hãy đi bơi lạnh trên sông.
-Đây là phần cuối của phần hai."""
+Đây là phần cuối của phần hai.""",
     },
     {
-        "id": 28, "title": "Cinema | North | London", "icon": "🖥️", "file": "PRACTICE FOR EXAM 1 part 1.mp3",
+        "id": 28,
+        "title": "Cinema | North | London",
+        "icon": "🖥️",
+        "file": "PRACTICE FOR EXAM 1 part 1.mp3",
         "en": """Now open your question paper and look at part 1.
 You will hear some information about a cinema.
 Thank you for calling the North London Arts Cinema Wood Green.
@@ -2131,10 +2215,13 @@ Bãi đậu xe gần rạp chiếu phim nhất là ở phố Hoxton.
 Nó chỉ cách rạp chiếu phim năm phút đi bộ.
 Cảm ơn bạn đã gọi đến Rạp chiếu phim nghệ thuật Bắc Luân Đôn.
 Nếu bạn cần thêm thông tin, hãy gọi điện trong giờ hành chính.
-9 giờ sáng đến 4 giờ 30 chiều, từ Thứ Hai đến Thứ Sáu."""
+9 giờ sáng đến 4 giờ 30 chiều, từ Thứ Hai đến Thứ Sáu.""",
     },
     {
-        "id": 29, "title": "Too | Sports | Centre", "icon": "🧳", "file": "PRACTICE FOR EXAM 1 part 2.mp3",
+        "id": 29,
+        "title": "Too | Sports | Centre",
+        "icon": "🧳",
+        "file": "PRACTICE FOR EXAM 1 part 2.mp3",
         "en": """Now look at part 2.
 Listen to Sarah talking to a friend about a sports centre.
 What is the problem with the different things at the sports centre?
@@ -2216,10 +2303,13 @@ Bạn có thể học quần vợt ở đó không?
 Tôi đã gọi điện về các bài học nhưng chúng đắt quá.
 Tôi sẽ dạy bạn quần vợt nhưng không phải hôm nay. Trời nóng quá.
 Chúng ta hãy đi bơi lạnh trên sông.
-Đây là phần cuối của phần hai."""
+Đây là phần cuối của phần hai.""",
     },
     {
-        "id": 30, "title": "Man | Questions | Through", "icon": "🎁", "file": "PRACTICE FOR EXAM 1 part 3.mp3",
+        "id": 30,
+        "title": "Man | Questions | Through",
+        "icon": "🎁",
+        "file": "PRACTICE FOR EXAM 1 part 3.mp3",
         "en": """Part 3.
 Listen and choose the correct answer.
 Questions 1 through 3 refer to the following conversation.
@@ -2289,10 +2379,13 @@ Tôi biết, nhưng giao thông thực sự rất tệ.
 À, anh ấy muốn bạn gọi cho anh ấy. Anh ấy có vẻ hơi tức giận.
 4. Câu nào đúng?
 5. Tại sao người đàn ông đó lại đến muộn?
-6. Người đàn ông có thể sẽ làm gì tiếp theo?"""
+6. Người đàn ông có thể sẽ làm gì tiếp theo?""",
     },
     {
-        "id": 31, "title": "Class | Now | Friend", "icon": "👟", "file": "PRACTICE FOR EXAM 1 part 4.mp3",
+        "id": 31,
+        "title": "Class | Now | Friend",
+        "icon": "👟",
+        "file": "PRACTICE FOR EXAM 1 part 4.mp3",
         "en": """Now look at part four.
 You will hear a man asking for information about the Westwood English school.
 Listen and complete questions 16 to 20.
@@ -2402,10 +2495,13 @@ Chúng tôi đang ở gần hiệu sách.
 Phải. Cảm ơn.
 Tạm biệt.
 Đây là phần cuối của phần bốn.
-Cảm ơn."""
+Cảm ơn.""",
     },
     {
-        "id": 32, "title": "London | Concert | Information", "icon": "🏥", "file": "PRACTICE FOR EXAM 2 part 1.mp3",
+        "id": 32,
+        "title": "London | Concert | Information",
+        "icon": "🏥",
+        "file": "PRACTICE FOR EXAM 2 part 1.mp3",
         "en": """Now open your question paper and look at part 1.
 You will hear some information about a pop concert.
 You will hear the information twice.
@@ -2481,10 +2577,13 @@ Cách tốt nhất để đến đó là đi tàu.
 Phòng hòa nhạc nằm ở phố Trinity.
 Đó là đường T-R-I-N-I-T-Y.
 Hẹn gặp bạn ở đó.
-Dành cho những người yêu thích âm nhạc cổ điển."""
+Dành cho những người yêu thích âm nhạc cổ điển.""",
     },
     {
-        "id": 33, "title": "Think | Does | Questions", "icon": "🛋️", "file": "PRACTICE FOR EXAM 2 part 3.mp3",
+        "id": 33,
+        "title": "Think | Does | Questions",
+        "icon": "🛋️",
+        "file": "PRACTICE FOR EXAM 2 part 3.mp3",
         "en": """Part 3.
 Listen and choose the correct answer.
 Questions 1 through 3 refer to the following conversation.
@@ -2553,11 +2652,14 @@ Tôi không thể tìm thấy kính của tôi.
 Có lẽ chúng đang ở trên bàn làm việc của bạn.
 Không, ồ vâng, tôi nhớ đã để chúng trong xe của mình.
 4. Người phụ nữ đang làm gì?
-5. Người đàn ông nghĩ chiếc kính ở đâu?
-6. Người phụ nữ nhớ gì?"""
+5. Where does the man think the glasses are?
+6. What does the woman remember?""",
     },
     {
-        "id": 34, "title": "Going | Store | Where", "icon": "💎", "file": "Q1.mp3",
+        "id": 34,
+        "title": "Going | Store | Where",
+        "icon": "💎",
+        "file": "Q1.mp3",
         "en": """Where is he going?
 A.
 She's going to the store.
@@ -2571,10 +2673,13 @@ Cô ấy đang đi đến cửa hàng.
 B.
 Tôi đang đi đến cửa hàng.
 C.
-Anh ấy đang đi đến cửa hàng."""
+Anh ấy đang đi đến cửa hàng.""",
     },
     {
-        "id": 35, "title": "Listen | Choose | Correct", "icon": "🎵", "file": "Q10.mp3",
+        "id": 35,
+        "title": "Listen | Choose | Correct",
+        "icon": "🎵",
+        "file": "Q10.mp3",
         "en": """Listen and choose the correct answer.
 Is the window open?
 A.
@@ -2590,10 +2695,13 @@ Không, nó không.
 B.
 Vâng, nó có.
 C.
-Không, không phải vậy."""
+Không, không phải vậy.""",
     },
     {
-        "id": 36, "title": "Listen | Choose | Correct", "icon": "🎸", "file": "Q11.mp3",
+        "id": 36,
+        "title": "Listen | Choose | Correct",
+        "icon": "🎸",
+        "file": "Q11.mp3",
         "en": """Listen and choose the correct answer.
 How have you been lately?
 A. I'm sorry I'm late.
@@ -2603,10 +2711,13 @@ C. Two hours.""",
 Gần đây bạn thế nào?
 A. Tôi xin lỗi tôi đến muộn.
 B. Tuyệt vời.
-C. Hai giờ."""
+C. Hai giờ.""",
     },
     {
-        "id": 37, "title": "Listen | Choose | Correct", "icon": "🎹", "file": "Q13.mp3",
+        "id": 37,
+        "title": "Listen | Choose | Correct",
+        "icon": "🎹",
+        "file": "Q13.mp3",
         "en": """Listen and choose the correct answer.
 When did the show start?
 A. I don't have time right now.
@@ -2616,10 +2727,13 @@ C. In a couple of hours.""",
 Buổi diễn bắt đầu khi nào?
 A. Bây giờ tôi không có thời gian.
 B. 20 phút trước.
-C. Trong vài giờ nữa."""
+C. Trong vài giờ nữa.""",
     },
     {
-        "id": 38, "title": "Turn | Phew | Hot", "icon": "🌤️", "file": "Q2.mp3",
+        "id": 38,
+        "title": "Turn | Phew | Hot",
+        "icon": "🌤️",
+        "file": "Q2.mp3",
         "en": """Phew, it's hot in here.
 A. I'll turn on the fan.
 B. I'll turn on the heat.
@@ -2627,10 +2741,13 @@ C. I'll turn on the lights.""",
         "vi": """Phù, ở đây nóng quá.
 A. Tôi sẽ bật quạt.
 B. Tôi sẽ bật lửa lên.
-C. Tôi sẽ bật đèn lên."""
+C. Tôi sẽ bật đèn lên.""",
     },
     {
-        "id": 39, "title": "Listen | Choose | Correct", "icon": "🎧", "file": "Q20.mp3",
+        "id": 39,
+        "title": "Listen | Choose | Correct",
+        "icon": "🎧",
+        "file": "Q20.mp3",
         "en": """Listen and choose the correct answer.
 Do you like chocolate ice cream?
 A.
@@ -2646,10 +2763,13 @@ Không, tôi không thể.
 B.
 Vâng, tôi biết.
 C.
-Vâng, tôi có thể."""
+Vâng, tôi có thể.""",
     },
     {
-        "id": 40, "title": "Because | Subway | Ride", "icon": "📈", "file": "Q21-23.mp3",
+        "id": 40,
+        "title": "Because | Subway | Ride",
+        "icon": "📈",
+        "file": "Q21-23.mp3",
         "en": """Listen and choose the best answer to each question.
 I usually ride my bicycle to work.
 It's much faster than taking the bus because I can take a shortcut through the park.
@@ -2663,10 +2783,13 @@ Nó nhanh hơn nhiều so với đi xe buýt vì tôi có thể đi đường t�
 Tổng cộng mất khoảng 20 phút.
 Tàu điện ngầm thậm chí còn chậm hơn vì từ nhà tôi đến ga tàu điện ngầm mất 15 phút đi bộ.
 Sau đó đi tàu điện ngầm thêm 20 phút nữa.
-Tuy nhiên, vào mùa đông, tôi phải đi xe buýt vì thời tiết."""
+Tuy nhiên, vào mùa đông, tôi phải đi xe buýt vì thời tiết.""",
     },
     {
-        "id": 41, "title": "Doctor | Want | Very", "icon": "🛁", "file": "Q24-26.mp3",
+        "id": 41,
+        "title": "Doctor | Want | Very",
+        "icon": "🛁",
+        "file": "Q24-26.mp3",
         "en": """Listen and choose the best answer to each question.
 After university, I want to be a doctor.
 Doctors have very important jobs.
@@ -2682,10 +2805,13 @@ Khi tôi còn nhỏ, mẹ tôi bị bệnh nặng.
 Cô ở lại bệnh viện một tháng.
 Tôi rất vui khi cô ấy trở về nhà.
 Nó thực sự khiến tôi muốn trở thành bác sĩ để có thể giúp đỡ những người bệnh.
-Trở thành bác sĩ thật vất vả nhưng tôi sẽ học tập chăm chỉ."""
+Trở thành bác sĩ thật vất vả nhưng tôi sẽ học tập chăm chỉ.""",
     },
     {
-        "id": 42, "title": "Tickets | Constant | Hall", "icon": "💰", "file": "Q27-29.mp3",
+        "id": 42,
+        "title": "Tickets | Constant | Hall",
+        "icon": "💰",
+        "file": "Q27-29.mp3",
         "en": """Listen and choose the best answer to each question.
 Due to problems with the lighting, the constant has to be postponed until Friday the 22nd.
 The constant will also be moved from Hall A to the larger Hall C. A bigger venue means
@@ -2695,10 +2821,13 @@ Most of the extra tickets, tickets will now be priced at the lower cost of $20."
 Do vấn đề về ánh sáng nên buổi lễ phải hoãn lại cho đến thứ Sáu ngày 22.
 Hằng số cũng sẽ được chuyển từ Hội trường A đến Hội trường C lớn hơn. Địa điểm lớn hơn có nghĩa là
 500 vé nữa bây giờ sẽ có sẵn gấp đôi số lượng ban đầu.
-Hầu hết các vé bổ sung hiện nay sẽ có giá thấp hơn là 20 USD."""
+Hầu hết các vé bổ sung hiện nay sẽ có giá thấp hơn là 20 USD.""",
     },
     {
-        "id": 43, "title": "Watching | Movie | Listen", "icon": "🎤", "file": "Q3.mp3",
+        "id": 43,
+        "title": "Watching | Movie | Listen",
+        "icon": "🎤",
+        "file": "Q3.mp3",
         "en": """Listen and choose the correct answer.
 3. What are you watching?
 A. You're watching a movie.
@@ -2708,10 +2837,13 @@ C. I'll watch a movie.""",
 3. Bạn đang xem gì?
 A. Bạn đang xem phim.
 B. Tôi đang xem phim.
-C. Tôi sẽ xem một bộ phim."""
+C. Tôi sẽ xem một bộ phim.""",
     },
     {
-        "id": 44, "title": "Spanish | Listen | Choose", "icon": "✏️", "file": "Q30-32.mp3",
+        "id": 44,
+        "title": "Spanish | Listen | Choose",
+        "icon": "✏️",
+        "file": "Q30-32.mp3",
         "en": """Listen and choose the best answer to each question.
 This year at University, I am studying three languages.
 English is the most difficult.
@@ -2723,10 +2855,13 @@ Năm nay tại trường Đại học, tôi đang học ba ngôn ngữ.
 Tiếng Anh là khó nhất.
 Tiếng Pháp và tiếng Tây Ban Nha đều khá dễ dàng.
 Tôi có nhiều cơ hội thực hành tiếng Tây Ban Nha vì tôi sống với người bạn Mexico.
-Tôi đang dần quen với việc nói tiếng Tây Ban Nha bên ngoài lớp học."""
+Tôi đang dần quen với việc nói tiếng Tây Ban Nha bên ngoài lớp học.""",
     },
     {
-        "id": 45, "title": "Flight | Listen | Choose", "icon": "💊", "file": "Q36-38.mp3",
+        "id": 45,
+        "title": "Flight | Listen | Choose",
+        "icon": "💊",
+        "file": "Q36-38.mp3",
         "en": """Listen and choose the best answer to each question.
 Attention all passengers on flight KL162 from Spain to Ireland.
 This flight has been delayed due to bad weather.
@@ -2736,10 +2871,13 @@ We apologise for any inconvenience.""",
 Tất cả hành khách trên chuyến bay KL162 từ Tây Ban Nha đến Ireland chú ý.
 Chuyến bay này đã bị trì hoãn do thời tiết xấu.
 Chuyến bay sẽ khởi hành lúc 19h15 từ cổng 22A.
-Chúng tôi xin lỗi vì bất kỳ sự bất tiện nào."""
+Chúng tôi xin lỗi vì bất kỳ sự bất tiện nào.""",
     },
     {
-        "id": 46, "title": "Did | Listen | Choose", "icon": "🎷", "file": "Q4.mp3",
+        "id": 46,
+        "title": "Did | Listen | Choose",
+        "icon": "🎷",
+        "file": "Q4.mp3",
         "en": """Listen and choose the correct answer.
 4.
 How did you do that?
@@ -2751,10 +2889,13 @@ C. No, you didn't.""",
 Bạn đã làm điều đó như thế nào?
 A. Tôi đã làm được.
 B. Thật dễ dàng. Tôi sẽ chỉ cho bạn.
-C. Không, bạn đã không làm thế."""
+C. Không, bạn đã không làm thế.""",
     },
     {
-        "id": 47, "title": "Korean | Here | Listen", "icon": "💉", "file": "Q45-47.mp3",
+        "id": 47,
+        "title": "Korean | Here | Listen",
+        "icon": "💉",
+        "file": "Q45-47.mp3",
         "en": """Listen and choose the best answer to each question.
 This is my friend Pablo from Spain.
 He came here six months ago.
@@ -2766,10 +2907,13 @@ He will be going back to Madrid next February.""",
 Anh ấy đến đây sáu tháng trước.
 Anh ấy đang học tiếng Hàn và kinh tế tại Đại học Quốc gia Seoul.
 Anh ấy nói tiếng Hàn rất tốt và rất thích đồ ăn Hàn Quốc.
-Anh ấy sẽ trở lại Madrid vào tháng 2 tới."""
+Anh ấy sẽ trở lại Madrid vào tháng 2 tới.""",
     },
     {
-        "id": 48, "title": "Listen | Choose | Best", "icon": "🎺", "file": "Q48-50.mp3",
+        "id": 48,
+        "title": "Listen | Choose | Best",
+        "icon": "🎺",
+        "file": "Q48-50.mp3",
         "en": """Listen and choose the best answer to each question.
 Questions 4-6 refer to the following announcement.
 Could the owner of a green in Red Dayson, Santa Lucia registration number ST-4571
@@ -2781,10 +2925,13 @@ Câu hỏi 4-6 đề cập đến thông báo sau.
 Liệu chủ nhân của bãi cỏ xanh ở Red Dayson, Santa Lucia có số đăng ký ST-4571
 xin vui lòng đến bãi đậu xe ngay lập tức?
 Xe của bạn đang chặn lối vào.
-Xe giao hàng không thể vào được khiến đường phố bên ngoài cửa hàng bị ùn tắc."""
+Xe giao hàng không thể vào được khiến đường phố bên ngoài cửa hàng bị ùn tắc.""",
     },
     {
-        "id": 49, "title": "Korean | Here | Listen", "icon": "🩺", "file": "Q51-53.mp3",
+        "id": 49,
+        "title": "Korean | Here | Listen",
+        "icon": "🩺",
+        "file": "Q51-53.mp3",
         "en": """Listen and choose the best answer to each question.
 This is my friend Pablo from Spain.
 He came here six months ago.
@@ -2796,10 +2943,13 @@ He will be going back to Madrid next February.""",
 Anh ấy đến đây sáu tháng trước.
 Anh ấy đang học tiếng Hàn và kinh tế tại Đại học Quốc gia Seoul.
 Anh ấy nói tiếng Hàn rất tốt và rất thích đồ ăn Hàn Quốc.
-Anh ấy sẽ trở lại Madrid vào tháng 2 tới."""
+Anh ấy sẽ trở lại Madrid vào tháng 2 tới.""",
     },
     {
-        "id": 50, "title": "Listen | Choose | Best", "icon": "🌧️", "file": "Q54-56.mp3",
+        "id": 50,
+        "title": "Listen | Choose | Best",
+        "icon": "🌧️",
+        "file": "Q54-56.mp3",
         "en": """Listen and choose the best answer to each question.
 Could the owner of a green and red Daysung Santa Lucia registration number ST-4571 please
 come to the parking lot immediately?
@@ -2811,10 +2961,13 @@ Xin chủ nhân chiếc xe Daysung Santa Lucia số đăng ký ST-4571 màu xanh
 đến bãi đậu xe ngay lập tức?
 Xe của bạn đang chặn lối vào.
 Xe giao hàng không thể vào được khiến đường phố bên ngoài ùn tắc
-cửa hàng."""
+cửa hàng.""",
     },
     {
-        "id": 51, "title": "Learning | Korean | Students", "icon": "🏫", "file": "Q57-59.mp3",
+        "id": 51,
+        "title": "Learning | Korean | Students",
+        "icon": "🏫",
+        "file": "Q57-59.mp3",
         "en": """Listen and choose the best answer to each question.
 Are you interested in learning Korean?
 If so, come to our free classes at Hondo English Institute.
@@ -2826,10 +2979,13 @@ Bạn có thích học tiếng Hàn không?
 Nếu vậy, hãy đến với các lớp học miễn phí của chúng tôi tại Học viện Anh ngữ Hondo.
 Ở đây học tập rất vui.
 Học sinh học tiếng Hàn với mọi người đến từ nhiều quốc gia khác nhau.
-Học sinh bắt đầu vào lúc 12 giờ ngày thứ bảy và 2 giờ ngày chủ nhật."""
+Học sinh bắt đầu vào lúc 12 giờ ngày thứ bảy và 2 giờ ngày chủ nhật.""",
     },
     {
-        "id": 52, "title": "Listen | Choose | Correct", "icon": "💡", "file": "Q6.mp3",
+        "id": 52,
+        "title": "Listen | Choose | Correct",
+        "icon": "💡",
+        "file": "Q6.mp3",
         "en": """Listen and choose the correct answer.
 Who were you talking to?
 A.
@@ -2845,10 +3001,13 @@ A.
 B.
 Để mua một ít kem.
 C.
-Gửi một người bạn."""
+Gửi một người bạn.""",
     },
     {
-        "id": 53, "title": "Zoo | Listen | Choose", "icon": "🗂️", "file": "Q60-62.mp3",
+        "id": 53,
+        "title": "Zoo | Listen | Choose",
+        "icon": "🗂️",
+        "file": "Q60-62.mp3",
         "en": """Listen and choose the best answer to each question.
 I have been working at the zoo for over 20 years now.
 Every day I have to feed the elephants and make sure that they have enough water.
@@ -2858,10 +3017,13 @@ The hippo is my second favorite animal after the elephant.""",
 Tôi đã làm việc ở sở thú được hơn 20 năm rồi.
 Hàng ngày tôi phải cho voi ăn và đảm bảo chúng có đủ nước.
 Vào giờ nghỉ, tôi thích đi dạo quanh sở thú và ngắm nhìn các loài động vật khác.
-Hà mã là loài động vật tôi yêu thích thứ hai sau voi."""
+Hà mã là loài động vật tôi yêu thích thứ hai sau voi.""",
     },
     {
-        "id": 54, "title": "Clock | Get | Work", "icon": "👔", "file": "Q63-65.mp3",
+        "id": 54,
+        "title": "Clock | Get | Work",
+        "icon": "👔",
+        "file": "Q63-65.mp3",
         "en": """Listen and choose the best answer to each question.
 My schedule is as busy as my friend's schedules. Usually I wake up at 7 o'clock, I get on a bus
 at 8 o'clock, and arrive at work at 9. After I get off work at about 6 o'clock, I go
@@ -2871,10 +3033,13 @@ I just stay at home and watch TV.""",
 Lịch trình của tôi cũng bận rộn như lịch trình của bạn tôi. Thường thì tôi thức dậy lúc 7 giờ và lên xe buýt
 lúc 8 giờ và đến nơi làm việc lúc 9 giờ. Sau khi tan sở vào khoảng 6 giờ, tôi đi
 đi mua sắm hoặc đi dạo công viên với vợ tôi. Đôi khi, khi tôi muốn một buổi tối yên tĩnh,
-Tôi chỉ ở nhà và xem TV."""
+Tôi chỉ ở nhà và xem TV.""",
     },
     {
-        "id": 55, "title": "Hop | Down | Bunny", "icon": "🎒", "file": "Q66-68.mp3",
+        "id": 55,
+        "title": "Hop | Down | Bunny",
+        "icon": "🎒",
+        "file": "Q66-68.mp3",
         "en": """Listen and choose the best answer to each question.
 Hop on down to bunny motors for a huge sales event.
 We have the fastest and most expensive cars on the market.
@@ -2886,10 +3051,13 @@ Nhảy xuống động cơ thỏ cho một sự kiện bán hàng lớn.
 Chúng tôi có những chiếc xe nhanh nhất và đắt nhất trên thị trường.
 Nhưng giờ đây bạn có thể tiết kiệm tới 50% khi mua một chiếc ô tô mới.
 Bạn muốn thấy anh ta giàu có hơn và thông minh hơn tất cả những người hàng xóm của bạn?
-Sau đó hãy chuyển sang động cơ thỏ ngay hôm nay."""
+Sau đó hãy chuyển sang động cơ thỏ ngay hôm nay.""",
     },
     {
-        "id": 56, "title": "Opponent | Listen | Choose", "icon": "🚑", "file": "Q69-71.mp3",
+        "id": 56,
+        "title": "Opponent | Listen | Choose",
+        "icon": "🚑",
+        "file": "Q69-71.mp3",
         "en": """Listen and choose the best answer to each question.
 I have been studying judo for over 10 years.
 During my last competition, one opponent pulled my shoulder out of its socket.
@@ -2901,10 +3069,13 @@ Tôi đã học judo được hơn 10 năm.
 Trong cuộc thi gần đây nhất của tôi, một đối thủ đã kéo vai tôi ra khỏi ổ cắm của nó.
 Dù đau đớn nhưng tôi vẫn có thể ném đối thủ xuống đất vì tôi thực sự không làm vậy.
 muốn thua.
-Trọng tài đã giơ tay biểu thị chiến thắng của tôi."""
+Trọng tài đã giơ tay biểu thị chiến thắng của tôi.""",
     },
     {
-        "id": 57, "title": "Tired | Listen | Choose", "icon": "🌟", "file": "Q7.mp3",
+        "id": 57,
+        "title": "Tired | Listen | Choose",
+        "icon": "🌟",
+        "file": "Q7.mp3",
         "en": """Listen and choose the correct answer.
 Why did you leave early?
 A. I was tired.
@@ -2914,10 +3085,13 @@ C. You are tired.""",
 Tại sao bạn lại rời đi sớm?
 A. Tôi mệt mỏi.
 B. Cô ấy mệt mỏi hơn.
-C. Bạn mệt mỏi."""
+C. Bạn mệt mỏi.""",
     },
     {
-        "id": 58, "title": "Choose | Listen | Best", "icon": "📁", "file": "Q72-74.mp3",
+        "id": 58,
+        "title": "Choose | Listen | Best",
+        "icon": "📁",
+        "file": "Q72-74.mp3",
         "en": """Listen and choose the best answer to each question.
 Over the past few years, I've had many jobs in the service industry.
 My duties included watering plants, sweeping floors, and serving customers in a restaurant.
@@ -2927,10 +3101,13 @@ If you choose to hire me, I can be available to start work as soon as tomorrow m
 Trong vài năm qua, tôi đã làm được nhiều việc trong ngành dịch vụ.
 Nhiệm vụ của tôi bao gồm tưới cây, quét sàn và phục vụ khách hàng trong nhà hàng.
 Vì vậy, dù trông tôi còn rất trẻ nhưng tôi có rất nhiều kinh nghiệm.
-Nếu bạn chọn thuê tôi, tôi có thể sẵn sàng bắt đầu công việc ngay vào sáng mai."""
+Nếu bạn chọn thuê tôi, tôi có thể sẵn sàng bắt đầu công việc ngay vào sáng mai.""",
     },
     {
-        "id": 59, "title": "Yoga | Answer | Relax", "icon": "✨", "file": "Q75-77.mp3",
+        "id": 59,
+        "title": "Yoga | Answer | Relax",
+        "icon": "✨",
+        "file": "Q75-77.mp3",
         "en": """Listen and choose the best answer to each question.
 Do you find it difficult to relax?
 Are you always stressed?
@@ -2942,10 +3119,13 @@ Bạn có thấy khó thư giãn không?
 Bạn luôn bị căng thẳng?
 Nếu vậy, câu trả lời cho vấn đề của bạn chính là yoga.
 Yoga có thể giúp cơ thể bạn thư giãn và cung cấp cho bạn nhiều năng lượng hơn.
-Hãy kiểm tra Trung tâm Yoga Rama theo số 311-4265 để biết thêm thông tin."""
+Hãy kiểm tra Trung tâm Yoga Rama theo số 311-4265 để biết thêm thông tin.""",
     },
     {
-        "id": 60, "title": "Would | Went | Vacation", "icon": "📌", "file": "Q78-80.mp3",
+        "id": 60,
+        "title": "Would | Went | Vacation",
+        "icon": "📌",
+        "file": "Q78-80.mp3",
         "en": """Listen and choose the best answer to each question.
 Two years ago, I went on vacation to Canada. I really enjoyed it.
 I went for walks in the mountains by myself. Then I would meet my friends and we would have dinner together.
@@ -2953,10 +3133,13 @@ I would love to go back on another vacation.""",
         "vi": """Nghe và chọn câu trả lời đúng nhất cho mỗi câu hỏi.
 Hai năm trước, tôi đi nghỉ ở Canada. Tôi thực sự rất thích nó.
 Tôi đã tự mình đi dạo trên núi. Sau đó tôi sẽ gặp bạn bè và chúng tôi sẽ ăn tối cùng nhau.
-Tôi rất muốn quay lại vào một kỳ nghỉ khác."""
+Tôi rất muốn quay lại vào một kỳ nghỉ khác.""",
     },
     {
-        "id": 61, "title": "Listen | Choose | Correct", "icon": "🧩", "file": "Q8.mp3",
+        "id": 61,
+        "title": "Listen | Choose | Correct",
+        "icon": "🧩",
+        "file": "Q8.mp3",
         "en": """Listen and choose the correct answer.
 When is your brother's birthday?
 A. Last year.
@@ -2966,10 +3149,13 @@ C. On time.""",
 Sinh nhật của anh trai bạn là khi nào?
 A. Năm ngoái.
 B. Thứ Ba tới.
-C. Đúng giờ."""
+C. Đúng giờ.""",
     },
     {
-        "id": 62, "title": "Office | Much | One", "icon": "📊", "file": "Q87-89.mp3",
+        "id": 62,
+        "title": "Office | Much | One",
+        "icon": "📊",
+        "file": "Q87-89.mp3",
         "en": """Is that the new computer the office bought for you?
 It looks pretty nice.
 I hadn't realized they were going to buy laptops.
@@ -2991,10 +3177,13 @@ Tôi chỉ mới dùng được một tuần nhưng nó đã khiến cuộc số
 Tuyệt vời.
 Mình cũng có tên trong danh sách mua một cái.
 Tôi nóng lòng muốn bắt đầu sử dụng nó.
-Số 41."""
+Số 41.""",
     },
     {
-        "id": 63, "title": "Nap | Should | Take", "icon": "🎯", "file": "Q9.mp3",
+        "id": 63,
+        "title": "Nap | Should | Take",
+        "icon": "🎯",
+        "file": "Q9.mp3",
         "en": """Listen and choose the correct answer.
 I'm so tired.
 A. I should take a nap.
@@ -3004,10 +3193,13 @@ C. He took a nap.""",
 Tôi mệt quá.
 A. Tôi nên ngủ trưa.
 B. Bạn nên ngủ trưa.
-C. Anh ấy đã ngủ trưa."""
+C. Anh ấy đã ngủ trưa.""",
     },
     {
-        "id": 64, "title": "Haven | Office | Week", "icon": "📋", "file": "Q90-92.mp3",
+        "id": 64,
+        "title": "Haven | Office | Week",
+        "icon": "📋",
+        "file": "Q90-92.mp3",
         "en": """I haven't seen you in the office all week. Have you been following the recent business reports out of Asia?
 No, I've been at a conference all week. I haven't had the time.
 You might want to take a look at them. There are copies in the conference room. It might be a good idea to check them out before you start on anything else.
@@ -3015,10 +3207,13 @@ That sounds ominous. Something bad always happens when I leave the office for a 
         "vi": """Cả tuần nay tôi không thấy bạn ở văn phòng. Bạn có theo dõi các báo cáo kinh doanh gần đây ở Châu Á không?
 Không, tôi đã dự hội nghị cả tuần rồi. Tôi chưa có thời gian.
 Bạn có thể muốn xem xét chúng. Có những bản sao trong phòng họp. Có thể bạn nên kiểm tra chúng trước khi bắt đầu làm bất cứ điều gì khác.
-Điều đó nghe có vẻ đáng ngại. Điều tồi tệ luôn xảy ra khi tôi rời văn phòng vài ngày."""
+Điều đó nghe có vẻ đáng ngại. Điều tồi tệ luôn xảy ra khi tôi rời văn phòng vài ngày.""",
     },
     {
-        "id": 65, "title": "Results | Been | Maybe", "icon": "🎨", "file": "Q96-98.mp3",
+        "id": 65,
+        "title": "Results | Been | Maybe",
+        "icon": "🎨",
+        "file": "Q96-98.mp3",
         "en": """Maybe we should meet tomorrow to discuss the results of the market survey.
 They've been gathering dust on my desk for weeks.
 Yes, we've been procrastinating, haven't we?
@@ -3034,14 +3229,15 @@ Tôi muốn đưa ra một kế hoạch chiến lược cho năm trước quý t
 Nếu chúng ta không làm sớm thì sẽ quá muộn.
 Tốt.
 Thế còn lúc 10 giờ ở văn phòng của tôi thì sao?
-Tôi sẽ in ra kết quả đối chiếu cho bạn."""
-    }
+Tôi sẽ in ra kết quả đối chiếu cho bạn.""",
+    },
 ]
-# Sidebar bộ lọc
+
+# 6. Sidebar bộ lọc bài nghe
 st.sidebar.header("🔍 Lọc bài nghe")
 search_term = st.sidebar.text_input("Tìm kiếm theo tên hoặc từ khóa:", "")
 
-# Hiển thị bài nghe
+# 7. Vòng lặp hiển thị bài nghe
 for lesson in LESSONS:
     if search_term.lower() in lesson["title"].lower() or search_term.lower() in str(
         lesson["id"]
@@ -3094,24 +3290,23 @@ for lesson in LESSONS:
                     f"⚠️ File audio/`{lesson['file']}` chưa có trong thư mục audio local!"
                 )
 
-            # Khung hiển thị Script & Dịch song song
+            # 8. Khung hiển thị Script & Dịch song song (Đã fix hoàn toàn lỗi hiển thị dịch)
             with st.expander("📖 Hiển thị Script & Dịch nghĩa", expanded=False):
-                header_col1, header_col2 = st.columns(2)
-                with header_col1:
-                    st.caption("🇺🇸 **Tiếng Anh (Script):**")
-                with header_col2:
-                    show_vi = st.toggle(
-                        "🌐 Xem Dịch Tiếng Việt", key=f"vi_{lesson['id']}"
-                    )
+                # Tạo công tắc bật/tắt dịch riêng
+                show_vi = st.toggle(
+                    "🌐 Xem Dịch Tiếng Việt", key=f"vi_toggle_{lesson['id']}"
+                )
 
                 col1, col2 = st.columns(2)
                 with col1:
+                    st.caption("🇺🇸 **Tiếng Anh (Script):**")
                     st.markdown(
                         f"<div class='script-box script-en'>{lesson['en']}</div>",
                         unsafe_allow_html=True,
                     )
 
                 with col2:
+                    st.caption("🇻🇳 **Tiếng Việt (Dịch nghĩa):**")
                     if show_vi:
                         st.markdown(
                             f"<div class='script-box script-vi'>{lesson['vi']}</div>",
