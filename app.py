@@ -191,19 +191,29 @@ for lesson in LESSONS:
                 st.error(f"⚠️ File audio/`{lesson['file']}` chưa có trong thư mục audio local/repository!")
 
             # Khung hiển thị Script & Dịch song song
+           # Khung hiển thị Script & Dịch song song
             with st.expander("📖 Hiển thị Script & Dịch nghĩa", expanded=False):
-                show_vi = st.toggle("🌐 Xem Dịch Tiếng Việt", key=f"vi_{lesson['id']}")
                 col1, col2 = st.columns(2)
 
                 with col1:
                     st.caption("🇺🇸 **Tiếng Anh (Script):**")
-                    st.markdown(f"<div class='script-box script-en'>{lesson['en']}</div>", unsafe_allow_html=True)
-                
+                    st.markdown(
+                        f"<div class='script-box script-en'>{lesson['en']}</div>",
+                        unsafe_allow_html=True,
+                    )
+
                 with col2:
+                    # Đưa công tắc toggle sang hẳn bên cột phải (Tiếng Việt)
+                    show_vi = st.toggle(
+                        "🌐 Xem Dịch Tiếng Việt", key=f"vi_{lesson['id']}"
+                    )
                     st.caption("🇻🇳 **Tiếng Việt (Dịch nghĩa):**")
+
+                    # Chỉ hiển thị khung bản dịch khi công tắc bật (không hiện dòng thông báo khi tắt)
                     if show_vi:
-                        st.markdown(f"<div class='script-box script-vi'>{lesson['vi']}</div>", unsafe_allow_html=True)
-                    else:
-                        st.info("Bật công tắc **'Xem Dịch Tiếng Việt'** ở trên để xem bản dịch.")
-            
+                        st.markdown(
+                            f"<div class='script-box script-vi'>{lesson['vi']}</div>",
+                            unsafe_allow_html=True,
+                        )
+
             st.divider()
