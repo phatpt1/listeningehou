@@ -3291,13 +3291,17 @@ for lesson in LESSONS:
                 )
 
             # 8. Khung hiển thị Script & Dịch song song (Đã fix hoàn toàn lỗi hiển thị dịch)
+         # Khung hiển thị Script & Dịch song song
             with st.expander("📖 Hiển thị Script & Dịch nghĩa", expanded=False):
-                # Tạo công tắc bật/tắt dịch riêng
-                show_vi = st.toggle(
-                    "🌐 Xem Dịch Tiếng Việt", key=f"vi_toggle_{lesson['id']}"
-                )
+                
+                # 1. Tách hẳn công tắc lên một hàng riêng và đẩy nó sang góc phải
+                col_space, col_toggle = st.columns([3, 1])
+                with col_toggle:
+                    show_vi = st.toggle("🌐 Xem Dịch Tiếng Việt", key=f"vi_{lesson['id']}")
 
+                # 2. Chia 2 cột nội dung nằm bên dưới công tắc (Đảm bảo ngang hàng 100%)
                 col1, col2 = st.columns(2)
+
                 with col1:
                     st.caption("🇺🇸 **Tiếng Anh (Script):**")
                     st.markdown(
@@ -3312,5 +3316,5 @@ for lesson in LESSONS:
                             f"<div class='script-box script-vi'>{lesson['vi']}</div>",
                             unsafe_allow_html=True,
                         )
-
+            
             st.divider()
